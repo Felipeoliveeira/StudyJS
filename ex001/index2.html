@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+  <div id="form-container">
+    <h2>Getting Started with JavaScript</h2>
+    
+    <div id="step-name">
+      <label for="name">Name:</label>
+      <input type="text" id="name" placeholder="Enter your name" />
+      <button onclick="goToAge()">Submit</button>
+    </div>
+    
+    <div id="step-age" style="display: none;">
+      <label for="age">Age:</label>
+      <input type="number" id="age" placeholder="Enter your age" />
+      <button onclick="showGreeting()">Submit</button>
+    </div>
+  
+    <p id="greeting" style="display: none;"></p>
+  </div>
+
+  <script>
+    function goToAge() {
+  const name = document.getElementById("name").value;
+  if (name.trim() === "") return;
+
+  const stepName = document.getElementById("step-name");
+  const stepAge = document.getElementById("step-age");
+
+  stepName.classList.add("fade");
+
+  setTimeout(() => {
+    stepName.style.display = "none";
+    stepAge.style.display = "block";
+    stepAge.classList.add("fade");
+    setTimeout(() => stepAge.classList.remove("fade"), 10);
+  }, 500);
+}
+
+function showGreeting() {
+  const name = document.getElementById("name").value;
+  const age = document.getElementById("age").value;
+
+  if (age.trim() === "") return;
+
+  document.getElementById("step-age").style.display = "none";
+  const greeting = document.getElementById("greeting");
+  greeting.innerText = `Hello, ${name}! You are ${age} years old!`;
+  greeting.style.display = "block";
+}
+  </script>
+</body>
+</html>
